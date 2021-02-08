@@ -95,7 +95,7 @@ This object contains vital information related to network key required to restor
 ### `devices`
 This is an array of devices recognized (paired with) by the coordinator. Every item maps network address to extended IEEE address of a device - which may be required by some adapters.
 
-The primary reason for this array is storage of APS encryption unique link keys, which may be required by device using APS security.
+The primary reason for this array is storage of APS encryption unique link keys, which may be required by devices using APS security.
 
 Every object within this array contains the following fields:
 * `nwk_address`: *string* - 16-bit device network address encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
@@ -106,9 +106,14 @@ Every object within this array contains the following fields:
    * `tx_counter`: *number* - value of 32-bit transmit frame counter for the link key.
 
 ## Samples
+Sample may be found in `samples` directory.
+
 | Name | Source | Description |
 | - | - | - |
 | [z2m-sample-1.json](samples/z2m-sample-1.json) | Zigbee2MQTT | Backup taken from CC2538 adapter on a formed network with working APS encryption. |
+
+## Models
+Data models for different languages may be found in `models` directory.
 
 ## TBD
 * JSON Schema,
