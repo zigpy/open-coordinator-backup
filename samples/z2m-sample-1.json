@@ -1,7 +1,7 @@
 {
   "metadata": {
     "format": "zigpy/open-coordinator-backup",
-    "version": 1,
+    "version": 0.0.1,
     "source": "zigbee-herdsman@0.13.65",
     "internal": {
       "date": "2021-02-08T19:35:24.761Z",
