@@ -38,8 +38,8 @@ The generated backup is a JSON document with the following top-level keys:
 ### `metadata`
 The top-level `metadata` object contains basic information about the backup itself:
 * `format`: *string* - needs to be set to `zigpy/open-coordinator-backup`,
-* `version`: *number* - specifier that will be incremented upon major specification
- changes that will require migration or introduce new keys. The current value is `1`,
+* `version`: *number* - Version specifier that will be incremented upon major specification
+ changes that will require migration or introduce new keys. This will use the [Semantic Versioning 2.0.0 standard](https://semver.org) of *X.Y.Z (Major.Minor.Patch)* scheme. The current value is `0.0.1`,
 * `source`: *string* - describes the application or package generating the file. This value will be the name of the package, followed by a literal `@`, then the version identifier of the generating package. For example, `zigpy-znp@0.3.1` or `zigbee-herdsman@d12727f3`. The purpose of this key is to uniquely identify the application generating the backup format and potentially work around bugs introduced in specific versions,
 * `internal`: *object* - arbitrary-structure object that can be used by the generating application to store any other useful non-network information. For the purposes of interoperability, it is not recommended to store any critical network information, for example stack-specific settings, in this object. Use the top-level `stack_specific` key with the appropriate sub-object for the stack.
 
