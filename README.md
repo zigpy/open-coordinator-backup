@@ -116,6 +116,5 @@ Sample may be found in `samples` directory.
 Data models for different languages may be found in `models` directory.
 
 ## TBD
-* JSON Schema,
 * Structures for various languages (TS, Python, ...),
 * Information on migrations.
