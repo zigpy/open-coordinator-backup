@@ -1,11 +1,15 @@
 # Open ZigBee Coordinator Backup Format
-An ongoing specification for a JSON ZigBee coordinator backup format.
+An ongoing specification for a JSON Zigee coordinator backup format as a hardware-independent non-proprietary open standard.
 
 ## Rationale
 The primary use case for this specification is to provide a simple standard for exporting
 ZigBee network information to disk. Standardizing this format will allowing users to
 backup, restore, and migrate their networks between coordinator hardware and network
 management software without having to needlessly rejoin all of their devices to a new network.
+
+## Implementation adoption
+
+This Open ZigBee Coordinator Backup Format has so far been adopted by several popular open source home automation projects, including [zigpy](https://github.com/zigpy/zigpy) (Zigbee library used by [Home Assistant](https://www.home-assistant.io/) and [Jeedom](https://www.jeedom.com/)) and [zigbee-herdsman](https://github.com/Koenkk/zigbee-herdsman) (Zigbee library used by [Zigbee2MQTT](https://www.zigbee2mqtt.io/) and [IoBroker](https://www.iobroker.net/)).
 
 ## Provisional Specification
 JSON is both human-readable supported well by common programming languages, making it a
