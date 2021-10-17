@@ -104,6 +104,7 @@ The primary reason for this array is storage of APS encryption unique link keys,
 Every object within this array contains the following fields:
 * `nwk_address`: *string* - 16-bit device network address encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
 * `ieee_address`: *string* - 64-bit IEEE address of the device encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
+* `is_child`: *boolean* (optional) - indicates if the device is a child of the coordinator (if not provided, consider it to be `false` if `link_key` is present and `true` otherwise),
 * `link_key`: *object* (optional),
    * `key`: *string* - 128-bit key encoded as described in [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
    * `rx_counter`: *number* - value of 32-bit receive frame counter for the link key,
