@@ -102,7 +102,7 @@ This is an array of devices recognized (paired with) by the coordinator. Every i
 The primary reason for this array is storage of APS encryption unique link keys, which may be required by devices using APS security.
 
 Every object within this array contains the following fields:
-* `nwk_address`: *string* - 16-bit device network address encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
+* `nwk_address`: *string* - 16-bit device network address encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes). If a device's current 16-bit network is not known, the value `null` can be used.
 * `ieee_address`: *string* - 64-bit IEEE address of the device encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
 * `is_child`: *boolean* (optional) - indicates if the device is a child of the coordinator (if the field does not exist - consider `true`),
 * `link_key`: *object* (optional),
