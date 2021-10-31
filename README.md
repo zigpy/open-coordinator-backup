@@ -97,13 +97,9 @@ This object contains vital information related to network key required to restor
 * `frame_counter`: *number* - numeric value of the 32-bit network frame counter.
 
 ### `devices`
-This is an array of devices recognized (paired with) by the coordinator. Every item maps network address to extended IEEE address of a device - which may be required by some adapters.
-
-The primary reason for this array is storage of APS encryption unique link keys, which may be required by devices using APS security.
-
-Every object within this array contains the following fields:
-* `nwk_address`: *string* - 16-bit device network address encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
+This is an array of devices relevant to the coordinator: namely children and devices with APS link keys shared with the coordinator. Every object within this array contains the following fields:
 * `ieee_address`: *string* - 64-bit IEEE address of the device encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
+* `nwk_address`: *string* - 16-bit device network address encoded as per [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes). If a device's current 16-bit network address is not known, the value `null` must be used.
 * `is_child`: *boolean* (optional) - indicates if the device is a child of the coordinator (if the field does not exist - consider `true`),
 * `link_key`: *object* (optional),
    * `key`: *string* - 128-bit key encoded as described in [Encoding Sequences of Bytes](#Encoding-Sequences-of-Bytes),
