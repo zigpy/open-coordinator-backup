@@ -8,75 +8,101 @@
             "type": "object",
             "properties": {
                 "format": {"type": "string", "pattern": "^zigpy/open-coordinator-backup$"},
-                "version": {"type": "integer", "minimum": 1, "maximum": 1},
+                "version": {"const": 2},
                 "source": {"type": "string", "pattern": "^(.*?)+@(.*?)$"},
                 "internal": {"type": "object"}
             },
             "required": ["version", "source"]
         },
-
         "stack_specific": {
             "type": "object",
             "properties": {
                 "zstack": {
                     "type": "object",
                     "properties": {
-                        "tclk_seed": {"type": "string", "pattern": "[a-fA-F0-9]{32}"}
+                        "tclk_seed": {"type": "string", "pattern": "[a-f0-9]{32}"}
                     }
                 }
             }
         },
-        "coordinator_ieee": {"type": "string", "pattern": "[a-fA-F0-9]{16}"},
-        "pan_id": {"type": "string", "pattern": "[a-fA-F0-9]{4}"},
-        "extended_pan_id": {"type": "string", "pattern": "[a-fA-F0-9]{16}"},
-        "nwk_update_id": {"type": "integer", "minimum": 0, "maximum": 255},
-        "security_level": {"type": "integer", "minimum": 0, "maximum": 7},
-        "channel": {"type": "integer", "minimum": 11, "maximum": 26},
-        "channel_mask": {
-            "type": "array",
-            "items": {"type": "integer", "minimum": 11, "maximum": 26}
-        },
-        "network_key": {
+        "network": {
             "type": "object",
             "properties": {
-                "key": {"type": "string", "pattern": "[a-fA-F0-9]{32}"},
-                "sequence_number": {"type": "integer", "minimum": 0, "maximum": 255},
-                "frame_counter": {"type": "integer", "minimum": 0, "maximum": 4294967295}
+                "pan_id": {"type": "string", "pattern": "[a-f0-9]{4}"},
+                "extended_pan_id": {"type": "string", "pattern": "[a-f0-9]{16}"},
+                "update_id": {"type": "integer", "minimum": 0, "maximum": 255},
+                "security_level": {"type": "integer", "minimum": 0, "maximum": 7},
+                "channel": {"type": "integer", "minimum": 11, "maximum": 26},
+                "channel_mask": {
+                    "type": "array",
+                    "items": {"type": "integer", "minimum": 11, "maximum": 26}
+                },
+                "network_key": {
+                    "type": "object",
+                    "properties": {
+                        "key": {"type": "string", "pattern": "[a-f0-9]{32}"},
+                        "sequence_number": {"type": "integer", "minimum": 0, "maximum": 255},
+                        "frame_counter": {"type": "integer", "minimum": 0, "maximum": 4294967295}
+                    },
+                    "required": ["key", "sequence_number", "frame_counter"]
+                },
+                "tc_link_key": {"type": "string", "pattern": "[a-f0-9]{32}"},
+                "nwk_manager": {"type": "string", "pattern": "[a-f0-9]{4}"}
             },
-            "required": ["key", "sequence_number", "frame_counter"]
+            "required": [
+                "pan_id",
+                "extended_pan_id",
+                "nwk_update_id",
+                "security_level",
+                "channel",
+                "channel_mask",
+                "network_key",
+                "tc_link_key",
+                "nwk_manager"
+            ]
+        },
+        "node": {
+            "type": "object",
+            "properties": {
+                "nwk": {"type": "string", "pattern": "[a-f0-9]{4}"},
+                "ieee": {"type": "string", "pattern": "[a-f0-9]{16}"},
+                "type": {"enum": ["router", "coordinator", "end_device"]}
+            },
+            "required": ["nwk", "ieee", "type"]
         },
         "devices": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "nwk_address": {"type": ["string", "null"], "pattern": "[a-fA-F0-9]{4}"},
-                    "ieee_address": {"type": "string", "pattern": "[a-fA-F0-9]{16}"},
+                    "ieee": {"type": "string", "pattern": "[a-f0-9]{16}"},
+                    "type": {"enum": ["router", "coordinator", "end_device", null]},
                     "is_child": {"type": "boolean"},
                     "link_key": {
                         "type": "object",
                         "properties": {
-                            "key": {"type": "string", "pattern": "[a-fA-F0-9]{16}"},
+                            "key": {"type": "string", "pattern": "[a-f0-9]{16}"},
                             "tx_counter": {"type": "integer", "minimum": 0, "maximum": 4294967295},
                             "rx_counter": {"type": "integer", "minimum": 0, "maximum": 4294967295}
                         },
                         "required": ["key", "tx_counter", "rx_counter"]
                     }
                 },
-                "required": ["nwk_address", "ieee_address"]
+                "required": ["nwk", "ieee", "type", "is_child"]
+            }
+        },
+        "addresses": {
+            "type": "object",
+            "patternProperties": {
+                "[a-f0-9]{16}": {"type": "string", "pattern": "[a-f0-9]{4}"}
             }
         }
     },
     "required": [
         "metadata",
-        "coordinator_ieee",
-        "pan_id",
-        "extended_pan_id",
-        "nwk_update_id",
-        "security_level",
-        "channel",
-        "channel_mask",
-        "network_key",
-        "devices"
+        "network",
+        "node",
+        "devices",
+        "addresses"
     ]
 }
