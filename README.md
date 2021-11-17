@@ -19,9 +19,7 @@ good fit for files that will be interpreted by both.
 ### Encoding Sequences of Bytes
 JSON does not natively support sequences of bytes (`char[]`, `Buffer`, bytestrings, etc.), therefore an intermediate representation is necessary.
 
-Sequences of bytes will be encoded as a case-insensitive string of each
-byte's hex representation, with leading zeroes, concatenated together. For example,
-`\x0A\xBB\xC0` will be represented as `"0abbc0"`.
+Sequences of bytes will be encoded as a lowecase string of each byte's hex representation, with leading zeroes, concatenated together. For example, `\x0A\xBB\xC0` will be represented as `"0abbc0"`.
 
 Different platforms may internally use different byte ordering (big endian, little endian). All binary sequences in this format need to be stored **MSB-LSB (big endian)**. For example, IEEE addresses are represented within Z-Stack LSB-MSB (little endian), therefore address `00:12:4b:00:06:10:4e:22` would be internally stored as `22:4e:10:06:00:4b:12:00`. For purposes of this specification the address needs to be reversed and converted to specified byte array representation form - `00124b0006104e22`.
 
