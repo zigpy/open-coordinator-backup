@@ -9,7 +9,7 @@ management software without having to needlessly rejoin all of their devices to 
 
 ## Implementation adoption
 
-This Open ZigBee Coordinator Backup Format has so far been adopted by several popular open source home automation projects, including [zigpy](https://github.com/zigpy/zigpy) (Zigbee library used by [Home Assistant](https://www.home-assistant.io/) and [Jeedom](https://www.jeedom.com/)) and [zigbee-herdsman](https://github.com/Koenkk/zigbee-herdsman) (Zigbee library used by [Zigbee2MQTT](https://www.zigbee2mqtt.io/) and [IoBroker](https://www.iobroker.net/)).
+This Open ZigBee Coordinator Backup Format has so far been adopted by several popular open source home automation projects, including [zigpy](https://github.com/zigpy/zigpy) (Zigbee library used by [Home Assistant](https://www.home-assistant.io/integrations/zha), [Jeedom](https://doc.jeedom.com/en_US/plugins/automation%20protocol/zigbee/), and [Domoticz](https://www.domoticz.com/wiki/ZigbeeForDomoticz)) and [zigbee-herdsman](https://github.com/Koenkk/zigbee-herdsman) (Zigbee library used by [Zigbee2MQTT](https://www.zigbee2mqtt.io) and [IoBroker](https://www.iobroker.net/#de/adapters/adapterref/iobroker.zigbee/README.md)).
 
 ## Provisional Specification
 JSON is both human-readable supported well by common programming languages, making it a
